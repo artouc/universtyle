@@ -1,4 +1,4 @@
-# @osaxyz/intersect
+# @osaxyz/universtyle
 
 ## インストール
 
@@ -13,7 +13,7 @@
 ### scoped styleの場合
 
 ```sass
-@use "universtyle" as osa
+@use "@osaxyz/universtyle" as osa
 
 html
     font-size: 16px
