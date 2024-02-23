@@ -1,0 +1,14 @@
+{
+  "name": "universtyle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.scss",
+  "author": "Original SIN Architecture",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.71.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

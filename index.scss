@@ -1,0 +1,67 @@
+@use 'sass:math';
+
+$base-font-size: 1em;
+$levelmap: (
+    -10: 19,
+    -9: 18,
+    -8: 17,
+    -7: 16,
+    -6: 15,
+    -5: 14,
+    -4: 13,
+    -3: 12,
+    -2: 11,
+    -1: 10,
+    0: 9,
+    1: 8,
+    2: 7,
+    3: 6,
+    4: 5,
+    5: 3,
+    6: 2,
+    7: 1,
+    8: 0.5,
+    9: 0.25,
+    10: 0.125
+);
+
+@function harmonic($level: 1) {
+    @return math.div($base-font-size * 8, map-get($levelmap, $level))
+};
+
+$base-margin: 1rem;
+$marginmap: (
+    0: 0.5,
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 5,
+    5: 8,
+    6: 13,
+    7: 21,
+    8: 34,
+    9: 55,
+    10: 89,
+);
+
+@function fibo($level: 1) {
+    @return $base-margin * map-get($marginmap, $level)
+};
+
+$silvermap: (
+    0: 0,
+    1: 1.41421356,
+    2: 1.999999993287874,
+    3: 2.82842711050762,
+    4: 3.999999973151494,
+    5: 5.656854202030479,
+    6: 7.999999919454483,
+    7: 11.313708366091438,
+    8: 15.999999785211956,
+    9: 22.627416656243836,
+    10:31.999999463029892
+);
+
+@function silver($input, $level: 1) {
+    @return $input * map-get($silvermap, $level)
+};
