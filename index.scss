@@ -1,4 +1,5 @@
 @use 'sass:math';
+@use 'sass:map';
 
 $base-font-size: 1em;
 $levelmap: (
@@ -26,7 +27,7 @@ $levelmap: (
 );
 
 @function harmonic($level: 1) {
-    @return math.div($base-font-size * 8, map-get($levelmap, $level))
+    @return math.div($base-font-size * 8, map.get($levelmap, $level))
 };
 
 $base-margin: 1rem;
@@ -47,7 +48,7 @@ $marginmap: (
 );
 
 @function fibo($level: 1) {
-    @return $base-margin * map-get($marginmap, $level)
+    @return $base-margin * map.get($marginmap, $level)
 };
 
 $silvermap: (
@@ -65,5 +66,5 @@ $silvermap: (
 );
 
 @function silver($input, $level: 1) {
-    @return $input * map-get($silvermap, $level)
+    @return $input * map.get($silvermap, $level)
 };
