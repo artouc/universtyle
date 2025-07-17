@@ -1,14 +1,14 @@
 {
-  "name": "@osaxyz/universtyle",
-  "version": "1.2.0",
-  "description": "数学に基づいてWebサイトのマージンやフォントサイズを決定することができるnpmパッケージです。",
-  "main": "index.scss",
-  "author": "Original SIN Architecture",
-  "license": "MIT",
-  "dependencies": {
-    "sass": "^1.71.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@osaxyz/universtyle",
+    "version": "1.2.0",
+    "description": "数学に基づいてWebサイトのマージンやフォントサイズを決定することができるnpmパッケージです。",
+    "main": "index.scss",
+    "author": "Original SIN Architecture",
+    "license": "MIT",
+    "dependencies": {
+        "sass": "^1.71.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }
