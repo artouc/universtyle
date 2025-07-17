@@ -1,70 +1,55 @@
 @use 'sass:math';
 @use 'sass:map';
 
-$base-font-size: 1em;
+$base-font-size: 1em !default;
+$base-margin: 1rem !default;
+
+$sqrt2: math.sqrt(2);
+
 $levelmap: (
-    -10: 19,
-    -9: 18,
-    -8: 17,
-    -7: 16,
-    -6: 15,
-    -5: 14,
-    -4: 13,
-    -3: 12,
-    -2: 11,
-    -1: 10,
-    0: 9,
-    1: 8,
-    2: 7,
-    3: 6,
-    4: 5,
-    5: 3,
-    6: 2,
-    7: 1,
-    8: 0.5,
-    9: 0.25,
-    10: 0.125
-);
+    -10: 19, -9: 18, -8: 17, -7: 16, -6: 15, -5: 14, -4: 13, -3: 12, -2: 11, -1: 10,
+    0: 9, 1: 8, 2: 7, 3: 6, 4: 5, 5: 3, 6: 2, 7: 1, 
+    8: math.div(1, 2), 9: math.div(1, 4), 10: math.div(1, 8)
+) !default;
 
-@function harmonic($level: 1) {
-    @return math.div($base-font-size * 8, map.get($levelmap, $level))
-};
-
-$base-margin: 1rem;
 $marginmap: (
-    -2: 0.125,
-    -1: 0.25,
-    0: 0.5,
-    1: 1,
-    2: 2,
-    3: 3,
-    4: 5,
-    5: 8,
-    6: 13,
-    7: 21,
-    8: 34,
-    9: 55,
-    10: 89,
-);
-
-@function fibo($level: 1) {
-    @return $base-margin * map.get($marginmap, $level)
-};
+    -2: math.div(1, 8), -1: math.div(1, 4), 0: math.div(1, 2), 1: 1, 2: 2, 3: 3, 4: 5, 5: 8, 6: 13, 7: 21, 8: 34, 9: 55, 10: 89
+) !default;
 
 $silvermap: (
     0: 0,
-    1: 1.41421356,
-    2: 1.999999993287874,
-    3: 2.82842711050762,
-    4: 3.999999973151494,
-    5: 5.656854202030479,
-    6: 7.999999919454483,
-    7: 11.313708366091438,
-    8: 15.999999785211956,
-    9: 22.627416656243836,
-    10:31.999999463029892
-);
+    1: $sqrt2,
+    2: math.pow($sqrt2, 2),
+    3: math.pow($sqrt2, 3),
+    4: math.pow($sqrt2, 4),
+    5: math.pow($sqrt2, 5),
+    6: math.pow($sqrt2, 6),
+    7: math.pow($sqrt2, 7),
+    8: math.pow($sqrt2, 8),
+    9: math.pow($sqrt2, 9),
+    10: math.pow($sqrt2, 10)
+) !default;
+
+@function harmonic($level: 1) {
+    $divisor: map.get($levelmap, $level);
+    @if $divisor == null {
+        @error "Invalid level: #{$level}. Must be between -10 and 10.";
+    }
+    @return math.div($base-font-size * 8, $divisor);
+}
+
+@function fibo($level: 1) {
+    $multiplier: map.get($marginmap, $level);
+    @if $multiplier == null {
+        @error "Invalid level: #{$level}. Must be between -2 and 10.";
+    }
+    @return $base-margin * $multiplier;
+}
 
 @function silver($input, $level: 1) {
-    @return $input * map.get($silvermap, $level)
-};
+    $multiplier: map.get($silvermap, $level);
+    @if $multiplier == null {
+        @error "Invalid level: #{$level}. Must be between 0 and 10.";
+    }
+    @return $input * $multiplier;
+}
